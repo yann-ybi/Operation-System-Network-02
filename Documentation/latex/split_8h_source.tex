@@ -1,0 +1,33 @@
+\hypertarget{split_8h_source}{}\doxysection{split.\+h}
+\label{split_8h_source}\index{/Users/mask/Desktop/412/Prog02/Applications/include/split.h@{/Users/mask/Desktop/412/Prog02/Applications/include/split.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}./applications.h"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{char}*\ imgPath;}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{char}*\ dirPath;}
+\DoxyCodeLine{00010\ \}\mbox{\hyperlink{struct_parsed}{Parsed}};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ this\ function\ parse\ the\ program\ arguments\ withing\ our\ Parsed\ structure}}
+\DoxyCodeLine{00013\ \mbox{\hyperlink{struct_parsed}{Parsed}}\ parseArgs(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \mbox{\hyperlink{struct_parsed}{Parsed}}\ parseArgs(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv)\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ !=\ 3)\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Incorrect\ number\ of\ argument,\ enter\ an\ input\ path\ and\ an\ output\ directory"{}});}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00019\ \ \ \ \ \}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{char}*\ imgPath\ =\ argv[1];\ \textcolor{keywordtype}{char}*\ dirPath\ =\ argv[2];}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (tgaPathIsValid(imgPath)\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}The\ first\ argument\ for\ the\ image\ file\ path\ is\ invalid"{}});}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (dirIsValid(dirPath)\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}The\ second\ argument\ for\ the\ output\ directory\ is\ invalid"{}});}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{struct_parsed}{Parsed}}\ parsed\ =\ \{\ imgPath,\ dirPath\ \};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return}\ parsed;}
+\DoxyCodeLine{00031\ \}}
+
+\end{DoxyCode}

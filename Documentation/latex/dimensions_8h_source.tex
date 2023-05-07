@@ -1,0 +1,146 @@
+\hypertarget{dimensions_8h_source}{}\doxysection{dimensions.\+h}
+\label{dimensions_8h_source}\index{/Users/mask/Desktop/412/Prog02/Applications/include/dimensions.h@{/Users/mask/Desktop/412/Prog02/Applications/include/dimensions.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}../../ImageLibrary/include/operations.h"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string.h>}\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}./applications.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{bool}\ isOption;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{char}*\ fpath;}
+\DoxyCodeLine{00015\ \}\mbox{\hyperlink{struct_parsed}{Parsed}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ isWidth;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ isHeight;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{bool}\ isVerbrose;}
+\DoxyCodeLine{00027\ \ \ \ \ OpErrorCode\ error;}
+\DoxyCodeLine{00028\ \}\ \mbox{\hyperlink{struct_option}{Option}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ this\ function\ creates\ an\ Option\ object\ containing\ on\ booleans}}
+\DoxyCodeLine{00031\ \mbox{\hyperlink{struct_option}{Option}}\ newOp(\textcolor{keywordtype}{bool}\ isWidth,\ \textcolor{keywordtype}{bool}\ isHeight,\ \textcolor{keywordtype}{bool}\ isVerbrose);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ this\ function\ parse\ the\ option\ arguments\ given\ to\ the\ program\ inside\ of\ an\ Option\ structure\ then\ returns\ it}}
+\DoxyCodeLine{00034\ \mbox{\hyperlink{struct_option}{Option}}\ parseOptionInput(\textcolor{keywordtype}{char}*\ op);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ this\ function\ print\ the\ appropriate\ error\ message\ based\ on\ the\ enum\ error\ code\ using\ the\ option\ string}}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ printOpError(\textcolor{keywordtype}{char}*\ opString,\ OpErrorCode*\ error);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ this\ function\ parse\ the\ program\ arguments\ withing\ our\ Parsed\ structure}}
+\DoxyCodeLine{00040\ \mbox{\hyperlink{struct_parsed}{Parsed}}\ parseArgs(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \mbox{\hyperlink{struct_option}{Option}}\ newOp(\textcolor{keywordtype}{bool}\ isWidth,\ \textcolor{keywordtype}{bool}\ isHeight,\ \textcolor{keywordtype}{bool}\ isVerbrose)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{struct_option}{Option}}\ option;}
+\DoxyCodeLine{00045\ \ \ \ \ option.isWidth\ =\ isWidth;}
+\DoxyCodeLine{00046\ \ \ \ \ option.isHeight\ =\ isHeight;}
+\DoxyCodeLine{00047\ \ \ \ \ option.isVerbrose\ =\ isVerbrose;}
+\DoxyCodeLine{00048\ \ \ \ \ option.error\ =\ NO\_OP\_ERROR;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ option;}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \mbox{\hyperlink{struct_option}{Option}}\ parseOptionInput(\textcolor{keywordtype}{char}*\ op)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{struct_option}{Option}}\ option\ =\ newOp(\textcolor{keyword}{false},\ \textcolor{keyword}{false},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (op[0]\ !=\ \textcolor{charliteral}{'-\/'})\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ modifier:\ \%c"{}},\ op[0]);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ exit(UNKNOWN\_OP);}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ op++;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{while}\ (*op\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (*op)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'h'}:}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!option.isHeight)\ \{\ option.isHeight\ =\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ option.error\ =\ EXTRA\_OP\_H;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (option.isWidth)\ \{\ option.error\ =\ EXCLUSIVE\_OPS;\ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'w'}:}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!option.isWidth)\ \{\ option.isWidth\ =\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ option.error\ =\ EXTRA\_OP\_W;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (option.isHeight)\ \{\ option.error\ =\ EXCLUSIVE\_OPS;\ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'v'}:}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!option.isVerbrose)\ \{\ option.isVerbrose\ =\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ option.error\ =\ EXTRA\_OP\_V;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ option.error\ =\ UNKNOWN\_OP;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ op++;}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ option;}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keywordtype}{void}\ printOpError(\textcolor{keywordtype}{char}*\ opString,\ OpErrorCode*\ error)\ \{\textcolor{comment}{//out\ }}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{switch}\ (*error)}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{case}\ UNKNOWN\_OP:}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ modifier:\ \%c"{}},\ opString[1]);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{case}\ EXTRA\_OP\_H:}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}The\ option\ modifier\ height\ -\/h\ should\ be\ used\ only\ once."{}});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{case}\ EXTRA\_OP\_W:}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}The\ option\ modifier\ width\ -\/w\ should\ be\ used\ only\ once."{}});}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{case}\ EXTRA\_OP\_V:}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}The\ option\ modifier\ verbrose\ -\/v\ should\ be\ used\ only\ once."{}});}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{case}\ EXCLUSIVE\_OPS:}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Modifiers\ -\/w\ and\ -\/h\ cannot\ be\ used\ together."{}});}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \mbox{\hyperlink{struct_parsed}{Parsed}}\ parseArgs(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv)\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ !=\ 2\ \&\&\ argc\ !=\ 3)\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ number\ of\ arguments:\ Multiple\ modifier\ chains\ not\ allowed."{}});}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ exit(BAD\_NUM\_ARGS);}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{char}*\ fpath;}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{bool}\ isOption\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ ==\ 2)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ fpath\ =\ argv[1];}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isaTGAfile(argv[1]))\{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}The\ argument\ is\ not\ a\ tga\ file:\ \%s"{}},\ argv[1]);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ exit(BAD\_FILE\_TYPE);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!tgaPathIsValid(fpath))\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}File\ cannot\ be\ read:\ \%s"{}},\ fpath);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ exit(BAD\_FILE\_PATH);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (argc\ ==\ 3)\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ fpath\ =\ argv[2];}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ isOption\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isaTGAfile(argv[2]))\{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}The\ argument\ is\ not\ a\ tga\ file:\ \%s"{}},\ argv[2]);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ exit(BAD\_FILE\_TYPE);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!tgaPathIsValid(fpath))\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}File\ cannot\ be\ read\ \%s"{}},\ fpath);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ exit(BAD\_FILE\_PATH);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ exit(BAD\_FILE\_TYPE);}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{struct_parsed}{Parsed}}\ parsed\ =\ \{\ isOption,\ fpath\ \};}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{return}\ parsed;}
+\DoxyCodeLine{00150\ \}}
+
+\end{DoxyCode}

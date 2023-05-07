@@ -1,0 +1,93 @@
+\hypertarget{crop_8h_source}{}\doxysection{crop.\+h}
+\label{crop_8h_source}\index{/Users/mask/Desktop/412/Prog02/Applications/include/crop.h@{/Users/mask/Desktop/412/Prog02/Applications/include/crop.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ header\ contains\ functions\ and\ structures\ used\ by\ our\ crop\ program}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}./applications.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../../ImageLibrary/include/rasterImage.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{char}*\ tgaPath;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{char}*\ dirPath;}
+\DoxyCodeLine{00014\ \}\ \mbox{\hyperlink{struct_parsed}{Parsed}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ x;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ y;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ width;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ height;}
+\DoxyCodeLine{00027\ \}\ \mbox{\hyperlink{struct_crop}{Crop}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ this\ function\ creates\ a\ crop\ structure\ using\ the\ coordinates\ x,\ y,\ the\ width\ and\ the\ height\ of\ the\ crop}}
+\DoxyCodeLine{00030\ \mbox{\hyperlink{struct_crop}{Crop}}\ newCrop(\textcolor{keywordtype}{int}\ x,\ \ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ this\ function\ returns\ true\ if\ an\ a\ crop\ is\ in\ a\ raster\ image\ range\ and\ false\ \ if\ it\ is\ not}}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{bool}\ isInBound(\mbox{\hyperlink{struct_raster_image}{RasterImage}}*\ image,\ \mbox{\hyperlink{struct_crop}{Crop}}*\ crop);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ this\ function\ parse\ the\ program\ arguments\ withing\ our\ Parsed\ structure}}
+\DoxyCodeLine{00036\ \mbox{\hyperlink{struct_parsed}{Parsed}}\ parseArgs\ (\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ checks\ whether\ arg\ is\ an\ unsigned\ integer\ or\ not,\ returns\ true\ or\ false\ respectively}}
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{bool}\ argIsValid(\textcolor{keywordtype}{char}\ *arg);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \mbox{\hyperlink{struct_crop}{Crop}}\ newCrop(\textcolor{keywordtype}{int}\ x,\ \ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height)\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{struct_crop}{Crop}}\ crop;}
+\DoxyCodeLine{00043\ \ \ \ \ crop.x\ =\ (\textcolor{keywordtype}{unsigned}\ int)\ x;}
+\DoxyCodeLine{00044\ \ \ \ \ crop.y\ =\ (\textcolor{keywordtype}{unsigned}\ int)\ y;}
+\DoxyCodeLine{00045\ \ \ \ \ crop.width\ =\ (\textcolor{keywordtype}{unsigned}\ int)\ width;}
+\DoxyCodeLine{00046\ \ \ \ \ crop.height\ =\ (\textcolor{keywordtype}{unsigned}\ int)\ height;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ crop;}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{bool}\ isInBound(\mbox{\hyperlink{struct_raster_image}{RasterImage}}*\ image,\ \mbox{\hyperlink{struct_crop}{Crop}}*\ crop)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ highestCropX\ =\ crop-\/>x\ +\ crop-\/>width;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ highestCropY\ =\ crop-\/>y\ +\ crop-\/>height;}
+\DoxyCodeLine{00053\ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (image-\/>\mbox{\hyperlink{struct_raster_image_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}}\ >=\ highestCropX\ \&\&\ image-\/>\mbox{\hyperlink{struct_raster_image_a85508d66a7f21584b3bd45305e0da93e}{height}}\ >=\ highestCropY)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}\ \textcolor{keywordflow}{else}\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \mbox{\hyperlink{struct_parsed}{Parsed}}\ parseArgs\ (\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ !=\ 7)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Incorrect\ number\ of\ arguments"{}});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ exit(BAD\_NUM\_ARGS);}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{char}*\ tgaPath\ =\ argv[1];\ \textcolor{keywordtype}{char}*\ dirPath\ =\ argv[2];}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}(!isaTGAfile(tgaPath))\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}The\ argument\ is\ not\ a\ tga\ file:\ \%s"{}},\ tgaPath);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ exit(BAD\_FILE\_TYPE);}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (!tgaPathIsValid(tgaPath))\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}File\ not\ found:\ \%s"{}},\ tgaPath);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ exit(UNKNOWN\_ARGUM);}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dirIsValid(dirPath))\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}The\ second\ argument\ for\ the\ output\ directory\ is\ invalid"{}});}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ exit(UNKNOWN\_ARGUM);}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{struct_parsed}{Parsed}}\ parsed\ =\ \{\ tgaPath,\ dirPath\ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 3;\ i\ <\ 7;\ i++)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!argIsValid(argv[i]))\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}The\ arguments\ defning\ the\ cropping\ rectangle\ must\ be\ positive\ integers."{}});}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ exit(UNKNOWN\_ARGUM);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{return}\ parsed;}
+\DoxyCodeLine{00086\ \}\ \ \ }
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keywordtype}{bool}\ argIsValid(\textcolor{keywordtype}{char}\ *arg)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ strlen(arg);\ i++)\{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isdigit(arg[i]))\{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{float}\ argf\ =\ atof(arg);\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ argi\ =\ argf;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{if}\ (argi\ !=\ argf)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{else}\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00097\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,40 @@
+\hypertarget{rotate_8h_source}{}\doxysection{rotate.\+h}
+\label{rotate_8h_source}\index{/Users/mask/Desktop/412/Prog02/Applications/include/rotate.h@{/Users/mask/Desktop/412/Prog02/Applications/include/rotate.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}./applications.h"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{char}*\ tgaPath;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{char}*\ dirPath;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{char}*\ rot;}
+\DoxyCodeLine{00012\ \}\ \mbox{\hyperlink{struct_parsed}{Parsed}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ this\ function\ parse\ the\ program\ arguments\ withing\ our\ Parsed\ structure}}
+\DoxyCodeLine{00015\ \mbox{\hyperlink{struct_parsed}{Parsed}}\ parseArgs(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \mbox{\hyperlink{struct_parsed}{Parsed}}\ parseArgs(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv)\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ !=\ 4)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Incorrect\ number\ of\ arguments"{}});}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ exit(BAD\_NUM\_ARGS);}
+\DoxyCodeLine{00021\ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{char}*\ tgaPath\ =\ argv[2];\ \textcolor{keywordtype}{char}*\ dirPath\ =\ argv[3];}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{char}*\ rot\ =\ argv[1];}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (!isaTGAfile(tgaPath))\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}The\ argument\ is\ not\ a\ tga\ file:\ \%s"{}},\ tgaPath);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (!tgaPathIsValid(tgaPath))\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}File\ not\ found:\ \%s"{}},\ tgaPath);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dirIsValid(dirPath))\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Dir\ not\ found:\ \%s"{}},\ dirPath);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{struct_parsed}{Parsed}}\ parsed\ =\ \{tgaPath,\ dirPath,\ rot\};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{return}\ parsed;}
+\DoxyCodeLine{00039\ \}}
+
+\end{DoxyCode}

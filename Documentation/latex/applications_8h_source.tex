@@ -1,0 +1,67 @@
+\hypertarget{applications_8h_source}{}\doxysection{applications.\+h}
+\label{applications_8h_source}\index{/Users/mask/Desktop/412/Prog02/Applications/include/applications.h@{/Users/mask/Desktop/412/Prog02/Applications/include/applications.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Yann\ Youbi}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ header\ contains\ functions\ and\ structures\ used\ by\ our\ applications\ programs}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}stdbool.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}dirent.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <ctype.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../../ImageLibrary/include/imageIO\_TGA.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}../../ImageLibrary/include/operations.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ this\ function\ takes\ a\ string\ path\ to\ a\ file,\ returns\ true\ is\ the\ path\ is\ valid\ and\ false\ if\ the\ path\ is\ not}}
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{bool}\ tgaPathIsValid(\textcolor{keywordtype}{char}*\ fpath);}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ this\ function\ takes\ a\ string\ path\ to\ a\ direct,\ returns\ true\ is\ the\ path\ is\ valid\ and\ false\ if\ the\ path\ is\ not}}
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{bool}\ dirIsValid(\textcolor{keywordtype}{char}*\ dirPath);}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ this\ function\ takes\ a\ string\ path,\ and\ return\ just\ the\ name\ of\ the\ file\ with\ no\ extentions}}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{char}*\ getFileName(\textcolor{keywordtype}{char}*\ imgPath);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ returns\ true\ if\ the\ file\ is\ a\ tga\ file,\ false\ otherwise}}
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{bool}\ isaTGAfile(\textcolor{keywordtype}{char}*\ arg);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{enum}\ ErrorCode\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ BAD\_NUM\_ARGS\ =\ 1,}
+\DoxyCodeLine{00025\ \ \ \ \ BAD\_FILE\_PATH,}
+\DoxyCodeLine{00026\ \ \ \ \ BAD\_FILE\_TYPE,}
+\DoxyCodeLine{00027\ \ \ \ \ UNKNOWN\_ARGUM,}
+\DoxyCodeLine{00028\ \ \ \ \ TOO\_LONG\_ARG,}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ NO\_OP\_ERROR\ =\ 6,}
+\DoxyCodeLine{00033\ \ \ \ \ UNKNOWN\_OP,}
+\DoxyCodeLine{00034\ \ \ \ \ EXTRA\_OP\_H,}
+\DoxyCodeLine{00035\ \ \ \ \ EXTRA\_OP\_W,}
+\DoxyCodeLine{00036\ \ \ \ \ EXTRA\_OP\_V,}
+\DoxyCodeLine{00037\ \ \ \ \ EXCLUSIVE\_OPS,}
+\DoxyCodeLine{00038\ \}\ OpErrorCode;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{bool}\ tgaPathIsValid(\textcolor{keywordtype}{char}*\ fpath)\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ FILE*\ tga\_in\ =\ fopen(fpath,\ \textcolor{stringliteral}{"{}rb"{}}\ );}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{if}\ (tga\_in\ ==\ NULL)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}\ \textcolor{keywordflow}{else}\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keywordtype}{bool}\ dirIsValid(\textcolor{keywordtype}{char}*\ dirPath)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ DIR*\ dir\ =\ opendir(dirPath);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir\ ==\ NULL)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}\ \textcolor{keywordflow}{else}\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{char}*\ getFileName(\textcolor{keywordtype}{char}*\ imgPath)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ strtok(strrchr(imgPath,\ \textcolor{charliteral}{'/'}),\ \textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{bool}\ isaTGAfile(\textcolor{keywordtype}{char}*\ arg)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{char}*\ str\ =\ arg\ +\ (strlen(arg)\ -\/\ 4);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{char}\ ext[5]\ =\ \textcolor{stringliteral}{"{}.tga"{}};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(ext,\ str)\ ==\ 0)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00059\ \ \ \ \ \}\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{else}\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00061\ \}}
+
+\end{DoxyCode}
